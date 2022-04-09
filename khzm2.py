@@ -1,32 +1,28 @@
 import time
-from datetime import datetime
-
 import requests
-import web
-from urllib.request import urlopen
+from flask import Flask
 
-urls = (
-    '/', 'index'
-)
-
-class index:
-    def GET(self):
-        time.sleep(2)
-        print(2)
-        print('--------------')
-        # Making a get request
-        # create a session object
-        s = requests.Session()
+app = Flask('')
 
 
+@app.route('/')
+def home():
+    import socket
+    time.sleep(5)
+    print(2)
+    s = requests.Session()
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+    try:
+        r = s.get('https://khzm1.herokuapp.com/',headers=headers)
+    except:
+        pass
 
-        # again make a get request
-        r = s.get('http://127.0.0.1:8080/',timeout=1)
+    return "I'm alive"
 
-        # check if cookie is still set
-        #response = requests.get('http://127.0.0.1:8080/')
-        return "<h1>Hello 2 :"+str(datetime.now().second)+"</h1>"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
 
 if __name__ == "__main__":
-    app = web.application(urls, globals())
     app.run()
