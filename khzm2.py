@@ -16,7 +16,7 @@ def home():
         r = s.get('https://khzm1.herokuapp.com/',headers=headers)
     except:
         pass
-     try:
+    try:
         r = s.get('https://khzm3.herokuapp.com/',headers=headers)
     except:
         pass
